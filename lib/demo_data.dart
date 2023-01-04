@@ -8,7 +8,7 @@ List<String> demoBigImages = [
 List<Map<String, dynamic>> demoMediumCardData = [
   {
     "name": "Daylight Coffee",
-    "image": "assets/medium_1.png",
+    "image": "assets/medium_1.jpg",
     "location": "Colarodo, San Francisco",
     "rating": 4.6,
     "deliverTime": 25,

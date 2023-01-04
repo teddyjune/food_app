@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/components/image_carousel.dart';
+import 'package:food_app/components/restaurant_info_medium_card.dart';
+import 'package:food_app/components/section_title.dart';
 import 'package:food_app/constants.dart';
 import 'package:food_app/demo_data.dart';
 
@@ -24,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                       .copyWith(color: kActiveColor),
                 ),
                 const Text(
-                  "홍대",
+                  "San Francisco",
                   style: TextStyle(color: Colors.black),
                 ),
               ],
@@ -40,51 +43,31 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           const SliverToBoxAdapter(child: ImageCarousel()),
-        ],
-      ),
-    );
-  }
-}
-
-class ImageCarousel extends StatefulWidget {
-  const ImageCarousel({Key? key}) : super(key: key);
-
-  @override
-  State<ImageCarousel> createState() => _ImageCarouselState();
-}
-
-class _ImageCarouselState extends State<ImageCarousel> {
-  int currentPage = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.81,
-      child: Stack(
-        alignment: Alignment.bottomRight,
-        children: [
-          PageView.builder(
-              itemCount: demoBigImages.length,
-              onPageChanged: (value) {
-                setState(() {
-                  currentPage = value;
-                });
-              },
-              itemBuilder: (context, index) =>
-                  Image.asset(demoBigImages[index])),
-          Positioned(
-            bottom: 10,
-            right: 40,
-            child: Row(
-              children: List.generate(
-                demoBigImages.length,
-                (index) => Padding(
-                  padding: const EdgeInsets.only(left: defaultPadding / 4),
-                  child: IndicatorDot(isActive: index == currentPage),
-                ),
+          SliverPadding(
+            padding: const EdgeInsets.all(defaultPadding),
+            sliver: SliverToBoxAdapter(
+              child: SectionTitle(
+                title: "Featured Partners",
+                press: () {},
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child: Row(
+              children: [
+                SizedBox(
+                    width: 200,
+                    child: RestaurantInfoMediumCard(
+                      title: demoMediumCardData[0]['name'],
+                      image: demoMediumCardData[0]['image'],
+                      location: demoMediumCardData[0]['location'],
+                      deliveryTime: demoMediumCardData[0]['deliverTime'],
+                      rating: demoMediumCardData[0]['rating'],
+                      press: () {},
+                    )),
+              ],
+            ),
+          )
         ],
       ),
     );
