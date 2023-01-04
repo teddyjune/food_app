@@ -16,8 +16,10 @@ class SectionTitle extends StatelessWidget {
         Text("Featured Partners", style: Theme.of(context).textTheme.headline6),
         TextButton(
           onPressed: press(),
-          style: TextButton.styleFrom(foregroundColor: kActiveColor),
-          child: const Text("See all"),
+          child: const Text(
+            "See all",
+            style: TextStyle(color: kActiveColor),
+          ),
         )
       ],
     );

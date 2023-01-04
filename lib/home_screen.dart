@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
             backgroundColor: Colors.white,
             elevation: 0,
+            floating: true,
             title: Column(
               children: [
                 Text(
@@ -53,21 +54,57 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Row(
-              children: [
-                SizedBox(
-                    width: 200,
-                    child: RestaurantInfoMediumCard(
-                      title: demoMediumCardData[0]['name'],
-                      image: demoMediumCardData[0]['image'],
-                      location: demoMediumCardData[0]['location'],
-                      deliveryTime: demoMediumCardData[0]['deliverTime'],
-                      rating: demoMediumCardData[0]['rating'],
-                      press: () {},
-                    )),
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: List.generate(
+                demoMediumCardData.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RestaurantInfoMediumCard(
+                    title: demoMediumCardData[index]['name'],
+                    image: demoMediumCardData[index]['image'],
+                    location: demoMediumCardData[index]['location'],
+                    deliverTime: demoMediumCardData[index]['deliverTime'],
+                    rating: demoMediumCardData[index]['rating'],
+                    press: () {},
+                  ),
+                ),
+              )),
             ),
-          )
+          ),
+          SliverToBoxAdapter(
+            child: Image.asset("assets/big_7.jpg"),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(defaultPadding),
+            sliver: SliverToBoxAdapter(
+              child: SectionTitle(
+                title: "Best Pick",
+                press: () {},
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: List.generate(
+                demoMediumCardData.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RestaurantInfoMediumCard(
+                    title: demoMediumCardData[index]['name'],
+                    image: demoMediumCardData[index]['image'],
+                    location: demoMediumCardData[index]['location'],
+                    deliverTime: demoMediumCardData[index]['deliverTime'],
+                    rating: demoMediumCardData[index]['rating'],
+                    press: () {},
+                  ),
+                ),
+              )),
+            ),
+          ),
         ],
       ),
     );
